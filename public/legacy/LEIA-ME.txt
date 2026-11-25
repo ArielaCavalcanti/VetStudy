@@ -1,0 +1,5 @@
+Versão standalone anterior do VetStudy, preservada em 25/11/2026.
+
+Acesse /legacy/index.html para abrir a versão antiga. Este arquivo inclui os materiais e canais locais, o banco de 240 questões tradicionais e 10 questões com imagens. As imagens estão preservadas em /legacy/assets e /assets.
+
+Esta cópia é mantida para referência e recuperação. A migração dos 250 itens para o banco Supabase da aplicação React é uma etapa separada e ainda precisa de revisão antes da publicação para estudantes.
