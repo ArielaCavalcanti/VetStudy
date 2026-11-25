@@ -15,6 +15,7 @@ import { Route as AuthRouteImport } from './routes/auth'
 import { Route as QuizRouteImport } from './routes/quiz'
 import { Route as AuthenticatedHistoricoRouteImport } from './routes/_authenticated/historico'
 import { Route as DisciplinasSlugRouteImport } from './routes/disciplinas.$slug'
+import { Route as AdminRouteImport } from './routes/admin'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -45,6 +46,11 @@ const DisciplinasSlugRoute = DisciplinasSlugRouteImport.update({
   path: '/disciplinas/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -52,6 +58,7 @@ export interface FileRoutesByFullPath {
   '/quiz': typeof QuizRoute
   '/historico': typeof AuthenticatedHistoricoRoute
   '/disciplinas/$slug': typeof DisciplinasSlugRoute
+  '/admin': typeof AdminRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -59,6 +66,7 @@ export interface FileRoutesByTo {
   '/quiz': typeof QuizRoute
   '/historico': typeof AuthenticatedHistoricoRoute
   '/disciplinas/$slug': typeof DisciplinasSlugRoute
+  '/admin': typeof AdminRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -68,10 +76,11 @@ export interface FileRoutesById {
   '/quiz': typeof QuizRoute
   '/_authenticated/historico': typeof AuthenticatedHistoricoRoute
   '/disciplinas/$slug': typeof DisciplinasSlugRoute
+  '/admin': typeof AdminRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/auth' | '/quiz' | '/historico' | '/disciplinas/$slug'
+  fullPaths: '/' | '/auth' | '/quiz' | '/historico' | '/disciplinas/$slug' | '/admin'
   fileRoutesByTo: FileRoutesByTo
   to: '/' | '/auth' | '/quiz' | '/historico' | '/disciplinas/$slug'
   id:
@@ -90,6 +99,7 @@ export interface RootRouteChildren {
   AuthRoute: typeof AuthRoute
   QuizRoute: typeof QuizRoute
   DisciplinasSlugRoute: typeof DisciplinasSlugRoute
+  AdminRoute: typeof AdminRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -135,6 +145,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/disciplinas/$slug'
       preLoaderRoute: typeof DisciplinasSlugRouteImport
       parentRoute: typeof rootRouteImport
+    },
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
+      parentRoute: typeof rootRouteImport
     }
   }
 }
@@ -156,6 +173,7 @@ const rootRouteChildren: RootRouteChildren = {
   AuthRoute: AuthRoute,
   QuizRoute: QuizRoute,
   DisciplinasSlugRoute: DisciplinasSlugRoute,
+  AdminRoute: AdminRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
