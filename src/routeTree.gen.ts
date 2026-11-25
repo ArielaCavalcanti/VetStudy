@@ -109,6 +109,9 @@ export interface FileRouteTypes {
     | '/quiz'
     | '/_authenticated/historico'
     | '/disciplinas/$slug'
+    | '/admin'
+    | '/materiais'
+    | '/resumos'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
