@@ -62,7 +62,7 @@ O arquivo `supabase/setup_study_materials.sql` cria a biblioteca privada de mate
 
 Configure no runtime do Cloudflare Worker:
 - `OPENAI_API_KEY` como **Secret** (nunca use prefixo `VITE_`, nunca coloque em arquivo versionado).
-- `OPENAI_MODEL` como variável, por padrão `gpt-6.2-astra`.
+- `OPENAI_MODEL` como variável, por padrão `gpt-6.2-sol`.
 
 Para desenvolvimento local, copie `.dev.vars.example` para `.dev.vars` e preencha a chave somente no arquivo local, que não deve ser enviado ao GitHub.
 
