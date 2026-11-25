@@ -16,6 +16,8 @@ import { Route as QuizRouteImport } from './routes/quiz'
 import { Route as AuthenticatedHistoricoRouteImport } from './routes/_authenticated/historico'
 import { Route as DisciplinasSlugRouteImport } from './routes/disciplinas.$slug'
 import { Route as AdminRouteImport } from './routes/admin'
+import { Route as MateriaisRouteImport } from './routes/materiais'
+import { Route as ResumosRouteImport } from './routes/resumos'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -51,6 +53,16 @@ const AdminRoute = AdminRouteImport.update({
   path: '/admin',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MateriaisRoute = MateriaisRouteImport.update({
+  id: '/materiais',
+  path: '/materiais',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResumosRoute = ResumosRouteImport.update({
+  id: '/resumos',
+  path: '/resumos',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -59,6 +71,8 @@ export interface FileRoutesByFullPath {
   '/historico': typeof AuthenticatedHistoricoRoute
   '/disciplinas/$slug': typeof DisciplinasSlugRoute
   '/admin': typeof AdminRoute
+  '/materiais': typeof MateriaisRoute
+  '/resumos': typeof ResumosRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -67,6 +81,8 @@ export interface FileRoutesByTo {
   '/historico': typeof AuthenticatedHistoricoRoute
   '/disciplinas/$slug': typeof DisciplinasSlugRoute
   '/admin': typeof AdminRoute
+  '/materiais': typeof MateriaisRoute
+  '/resumos': typeof ResumosRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -77,12 +93,14 @@ export interface FileRoutesById {
   '/_authenticated/historico': typeof AuthenticatedHistoricoRoute
   '/disciplinas/$slug': typeof DisciplinasSlugRoute
   '/admin': typeof AdminRoute
+  '/materiais': typeof MateriaisRoute
+  '/resumos': typeof ResumosRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/auth' | '/quiz' | '/historico' | '/disciplinas/$slug' | '/admin'
+  fullPaths: '/' | '/auth' | '/quiz' | '/historico' | '/disciplinas/$slug' | '/admin' | '/materiais' | '/resumos'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/auth' | '/quiz' | '/historico' | '/disciplinas/$slug'
+  to: '/' | '/auth' | '/quiz' | '/historico' | '/disciplinas/$slug' | '/admin' | '/materiais' | '/resumos'
   id:
     | '__root__'
     | '/'
@@ -100,6 +118,8 @@ export interface RootRouteChildren {
   QuizRoute: typeof QuizRoute
   DisciplinasSlugRoute: typeof DisciplinasSlugRoute
   AdminRoute: typeof AdminRoute
+  MateriaisRoute: typeof MateriaisRoute
+  ResumosRoute: typeof ResumosRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -153,6 +173,21 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminRouteImport
       parentRoute: typeof rootRouteImport
     }
+,
+    '/materiais': {
+      id: '/materiais'
+      path: '/materiais'
+      fullPath: '/materiais'
+      preLoaderRoute: typeof MateriaisRouteImport
+      parentRoute: typeof rootRouteImport
+    },
+    '/resumos': {
+      id: '/resumos'
+      path: '/resumos'
+      fullPath: '/resumos'
+      preLoaderRoute: typeof ResumosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -174,6 +209,8 @@ const rootRouteChildren: RootRouteChildren = {
   QuizRoute: QuizRoute,
   DisciplinasSlugRoute: DisciplinasSlugRoute,
   AdminRoute: AdminRoute,
+  MateriaisRoute: MateriaisRoute,
+  ResumosRoute: ResumosRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
