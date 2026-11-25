@@ -274,6 +274,7 @@ function StudyMaterialsPage() {
               {uploadMutation.isPending ? <><LoaderCircle className="mr-2 h-4 w-4 animate-spin" /> Enviando...</> : <><Upload className="mr-2 h-4 w-4" /> Enviar material</>}
             </Button>
             <span className="text-xs text-muted-foreground">O arquivo ficará privado, acessível apenas à administração.</span>
+            <p className="basis-full text-xs text-muted-foreground">Ao solicitar a geração, o arquivo será enviado temporariamente ao provedor de IA configurado para criar o resumo e as questões. A chave de API fica protegida no servidor, nunca nesta tela.</p>
           </div>
         </form>
       </section>
