@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { EmptyContent } from "@/components/vet/EmptyContent";
 import { Skeleton } from "@/components/ui/skeleton";
 import { generateStudyFromDocument } from "@/lib/study-materials.functions";
+import { MarkdownContent } from "@/components/vet/MarkdownContent";
 
 export const Route = createFileRoute("/materiais")({
   head: () => ({
@@ -333,7 +334,7 @@ function StudyMaterialsPage() {
                           {summary.review_status === "approved" ? "Resumo aprovado" : summary.review_status === "rejected" ? "Resumo recusado" : "Aguardando revisão"}
                         </span>
                       </div>
-                      <div className="mt-3 max-h-80 overflow-auto whitespace-pre-wrap text-sm leading-6">{summary.content_markdown}</div>
+                      <div className="mt-3 max-h-80 overflow-auto"><MarkdownContent content={summary.content_markdown} /></div>
                       {summary.review_status === "pending" && (
                         <div className="mt-4 flex flex-wrap justify-end gap-2">
                           <Button size="sm" variant="outline" disabled={reviewMutation.isPending} onClick={() => reviewMutation.mutate({ summaryId: summary.id, status: "rejected" })}>
