@@ -147,7 +147,7 @@ export const generateStudyFromDocument = createServerFn({ method: "POST" })
         "ARQUIVO ORIGINAL: " + document.original_filename,
       ].join("\n");
 
-      const model = process.env["OPENAI_MODEL"] || "gpt-6.2-astra";
+      const model = process.env["OPENAI_MODEL"] || "gpt-6.2-sol";
       const response = await fetch("https://api.openai.com/v1/responses", {
         method: "POST",
         headers: {
