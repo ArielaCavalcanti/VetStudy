@@ -4,6 +4,7 @@ import { BookOpenText, FileText } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { EmptyContent } from "@/components/vet/EmptyContent";
 import { Skeleton } from "@/components/ui/skeleton";
+import { MarkdownContent } from "@/components/vet/MarkdownContent";
 
 export const Route = createFileRoute("/resumos")({
   head: () => ({
@@ -58,7 +59,7 @@ function ApprovedSummariesPage() {
                   {summary.topics?.name && <p className="mt-1 text-sm text-muted-foreground">{summary.topics.name}</p>}
                 </div>
               </div>
-              <div className="mt-5 whitespace-pre-wrap text-sm leading-7">{summary.content_markdown}</div>
+              <div className="mt-5"><MarkdownContent content={summary.content_markdown} /></div>
             </article>
           ))}
         </div>
