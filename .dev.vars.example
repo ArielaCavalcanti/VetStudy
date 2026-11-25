@@ -1,0 +1,11 @@
+# Copie para .dev.vars localmente e substitua os exemplos.
+# Variáveis usadas pelo runtime do Worker. Não versione .dev.vars.
+SUPABASE_URL=https://SEU-PROJETO.supabase.co
+SUPABASE_PUBLISHABLE_KEY=sb_publishable_substitua_por_sua_chave
+# Só necessário para operações administrativas no servidor; mantenha como segredo.
+SUPABASE_SERVICE_ROLE_KEY=seu_segredo_service_role
+
+# IA para gerar resumos e quizzes a partir de documentos.
+# Adicione a chave apenas no .dev.vars local ou como Secret no Cloudflare Worker.
+OPENAI_API_KEY=coloque_sua_chave_da_api_aqui
+OPENAI_MODEL=gpt-6.2-sol
