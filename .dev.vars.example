@@ -1,0 +1,7 @@
+# Copie para .dev.vars localmente e substitua os exemplos.
+# Não versione o arquivo .dev.vars.
+SUPABASE_URL=https://SEU-PROJETO.supabase.co
+SUPABASE_PUBLISHABLE_KEY=SUA_CHAVE_PUBLICAVEL
+SUPABASE_SERVICE_ROLE_KEY=SEGREDO_APENAS_NO_SERVIDOR
+VITE_SUPABASE_URL=https://SEU-PROJETO.supabase.co
+VITE_SUPABASE_PUBLISHABLE_KEY=SUA_CHAVE_PUBLICAVEL
