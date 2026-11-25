@@ -8,4 +8,4 @@ SUPABASE_SERVICE_ROLE_KEY=seu_segredo_service_role
 # IA para gerar resumos e quizzes a partir de documentos.
 # Adicione a chave apenas no .dev.vars local ou como Secret no Cloudflare Worker.
 OPENAI_API_KEY=coloque_sua_chave_da_api_aqui
-OPENAI_MODEL=gpt-6.2-astra
+OPENAI_MODEL=gpt-6.2-sol
