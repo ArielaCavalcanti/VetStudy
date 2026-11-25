@@ -49,6 +49,25 @@ Durante a primeira importação automática via integração, 100 questões trad
 
 A rota `/admin` oferece revisão e aprovação para contas com papel `admin`. Depois de criar sua conta de estudante, um administrador deve copiar seu UUID em Supabase Dashboard → Authentication → Users e executar o modelo `supabase/grant_admin_role_template.sql` após substituir `COLE-SEU-UUID-AQUI`.
 
+
+### Materiais, resumos e quizzes gerados por IA
+
+O arquivo `supabase/setup_study_materials.sql` cria a biblioteca privada de materiais, a tabela de resumos, a ligação entre questões e documentos, e as políticas RLS/Storage. Execute esse SQL no Supabase antes de usar a nova área.
+
+- A área administrativa `/materiais` permite enviar PDF, PowerPoint, Word, TXT e Markdown (limite de 25 MB), associando cada arquivo a uma disciplina e tópico.
+- Os documentos ficam no bucket privado `study-materials`; apenas administradores podem enviar, listar e ler os arquivos.
+- A geração ocorre no servidor usando a OpenAI Responses API, com o arquivo privado compartilhado temporariamente por URL assinada.
+- O resumo fica pendente de aprovação na área de Materiais. As questões geradas entram em `public.questions` com `review_status = 'pending'` e podem ser avaliadas em `/admin`.
+- Apenas resumos aprovados aparecem em `/resumos`. Questões continuam invisíveis aos estudantes até aprovação.
+
+Configure no runtime do Cloudflare Worker:
+- `OPENAI_API_KEY` como **Secret** (nunca use prefixo `VITE_`, nunca coloque em arquivo versionado).
+- `OPENAI_MODEL` como variável, por padrão `gpt-6.2-astra`.
+
+Para desenvolvimento local, copie `.dev.vars.example` para `.dev.vars` e preencha a chave somente no arquivo local, que não deve ser enviado ao GitHub.
+
+A geração usa exclusivamente o arquivo enviado e a resposta ainda precisa ser revisada por uma pessoa. PDFs são processados com texto e imagens das páginas; arquivos PowerPoint e Word podem ter o texto extraído sem que imagens incorporadas sejam lidas. Para slides com diagramas importantes, exporte-os como PDF antes de enviar. O processamento consome créditos da API e a cobrança da API é separada da assinatura ChatGPT.
+
 ## Cloudflare Workers
 
 O projeto usa o plugin oficial `@cloudflare/vite-plugin` com TanStack Start.
